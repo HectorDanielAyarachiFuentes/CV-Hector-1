@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi CV</title>
+<style>
+  body { 
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+  }
+  
+  .nav-bar { 
+    background-color: #1a1a2e; 
+    width: 80px; 
+    height: 100vh; 
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav-item { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 10px 0;
+    transition: transform 0.2s ease;
+  }
+  
+  .nav-item:hover {
+    transform: scale(1.1);
+  }
+  
+  .nav-item a { 
+    display: block; 
+    width: 100%; 
+    padding: 10px; 
+    color: white; 
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .nav-item a:hover { 
+    background: linear-gradient(45deg, #16a085, #2980b9);
+    border-radius: 10px;
+  }
+  
+  .icon { 
+    width: 45px; 
+    height: 45px; 
+    background-color: white; 
+    border-radius: 12px;
+    margin: 5px;
+    transition: all 0.3s ease;
+    object-fit: cover;
+  }
+  
+  .icon:hover {
+    transform: rotate(5deg);
+    box-shadow: 0 0 15px rgba(0,255,204,0.3);
+  }
+
+  .content-wrapper {
+    flex-grow: 1;
+    margin-left: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .content-section {
+    max-width: 800px;
+    width: 100%;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  .content-section.active {
+    display: block;
+  }
+
+  h1, h2 {
+    color: #1a1a2e;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  p, ul {
+    color: #333;
+    line-height: 1.6;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+
+    .nav-bar {
+      width: 100%;
+      height: 70px;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-around;
+      overflow-x: auto;
+    }
+
+    .nav-item {
+      margin: 0 5px;
+    }
+
+    .icon {
+      width: 35px;
+      height: 35px;
+    }
+
+    .content-wrapper {
+      margin-left: 0;
+      margin-top: 70px;
+      padding: 15px;
+    }
+
+    .content-section {
+      padding: 20px;
+      margin: 10px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p, li {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-bar {
+      height: 60px;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .content-section {
+      padding: 15px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <div class="nav-item">
+    <a href="#" title="Bienvenida" onclick="showSection('welcome')">
+      <img src="https://scontent.fnqn4-1.fna.fbcdn.net/v/t39.30808-6/425518970_7469848249773198_5147395026105930742_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeEHzk1R88GzDLFPqsmrgwxpMpzWib22Xn4ynNaJvbZefoOqQK1vZAAXcKtXnz7Ry8wdhmxE2n0-dv-kNW8q3CDb&_nc_ohc=dNmLWQ_UOXoQ7kNvgEWa_e1&_nc_zt=23&_nc_ht=scontent.fnqn4-1.fna&_nc_gid=Awuu2ROO5RoaLc878QVjCA1&oh=00_AYD5miMNUw6ueGkkLqwGXex6uK3qbVjO7ASkf0v2OaMwKA&oe=67394345" alt="Bienvenida" class="icon" />
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="#" title="Experiencia" onclick="showSection('experience')">
+      <img src="https://scontent.fnqn4-1.fna.fbcdn.net/v/t39.30808-6/426563097_7512121805545842_3691005611991893357_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeHSVD1LMjeUvtT7yQUhaz-A0x0tA7fB8P3THS0Dt8Hw_VIXiqCzb5F6urieNOAwZKqrNao4_3FKJ-Pp7u7p0bse&_nc_ohc=McGCswr2SHAQ7kNvgFB8asm&_nc_zt=23&_nc_ht=scontent.fnqn4-1.fna&_nc_gid=AKkImy72E4RQ82gGBmHAA1x&oh=00_AYCpQ-8l87Da5mGpz1S7NoZ38pfSV4emXRkpVxg0zVa-eg&oe=673944FC" alt="Experiencia" class="icon" />
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="#" title="Educación" onclick="showSection('education')">
+      <img src="https://scontent.fnqn4-1.fna.fbcdn.net/v/t39.30808-6/431420860_7580442588713763_7492908239632892707_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeGBr5ibPA6f4jG8g0ZH8nEKpZlQgDtv5rmlmVCAO2_muaJrybAkxD0gvD0vZcOX9O4k-uIa5mt0oRnr2DSbFheR&_nc_ohc=dtuT8dLfOT4Q7kNvgEg1mlp&_nc_zt=23&_nc_ht=scontent.fnqn4-1.fna&_nc_gid=A6tEWIluEcQMsK1RU1Liwg7&oh=00_AYAvhScrQHW6-oDcaNjgDG42xZ7EAZFDmE5Ig4LrNwNgtA&oe=67393F67" alt="Educación" class="icon" />
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="#" title="Habilidades" onclick="showSection('skills')">
+      <img src="https://scontent.fnqn4-1.fna.fbcdn.net/v/t39.30808-6/431907550_7605825112842177_850476764272770064_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeFbAaLI8z6P2L_EuD-ptkQKN8er1zKICFU3x6vXMogIVRGN4NTZan8UffDsjuRzY4k2i0PnzaMSvXPHwUiG7Cmg&_nc_ohc=P70H_SSlTLEQ7kNvgHRGjO5&_nc_zt=23&_nc_ht=scontent.fnqn4-1.fna&_nc_gid=An72VMkHz0lOfJfyAy1C7e9&oh=00_AYAa0XtBKyOX14arSdI9D_EdAukRWDsvgc-eNlL-xCUtsA&oe=67394062" alt="Habilidades" class="icon" />
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="#" title="Contacto" onclick="showSection('contact')">
+      <img src="https://scontent.fnqn4-1.fna.fbcdn.net/v/t39.30808-6/424852822_7452549341503089_4073351677336277905_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeFRmySFttPG_8GAIOEiRAdvJDAcMeDZjPokMBwx4NmM-jjEB-NIaoE8JtQKPXz8MOWKOd_3n9UyoTBeWHMQ8H5v&_nc_ohc=MLb9sFb3Ue8Q7kNvgFPciTC&_nc_zt=23&_nc_ht=scontent.fnqn4-1.fna&_nc_gid=AE6UcWjRIaIMQGHG3JW8DsN&oh=00_AYA7YPrF180xo-_ymp7hOGsgarL4xgVhEretMCOz6VDU-w&oe=673950C5" alt="Contacto" class="icon" />
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="#" title="Referencias" onclick="showSection('references')">
+      <img src="https://scontent.fnqn4-1.fna.fbcdn.net/v/t39.30808-6/426563097_7512121805545842_3691005611991893357_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeHSVD1LMjeUvtT7yQUhaz-A0x0tA7fB8P3THS0Dt8Hw_VIXiqCzb5F6urieNOAwZKqrNao4_3FKJ-Pp7u7p0bse&_nc_ohc=McGCswr2SHAQ7kNvgFB8asm&_nc_zt=23&_nc_ht=scontent.fnqn4-1.fna&_nc_gid=AcgeAy0iYuWevrjsA7XkeN5&oh=00_AYCtBfjKbdya4L7m1cEmY8WthJSFhaF1atQfSDVeep_aAQ&oe=673944FC" alt="Referencias" class="icon" />
+    </a>
+  </div>
+</div>
+
+<div class="content-wrapper">
+  <div id="welcome" class="content-section">
+    <h1>¡Bienvenidos a mi CV!</h1>
+    <p>Soy un profesional apasionado por el desarrollo web y las nuevas tecnologías.</p>
+  </div>
+
+  <div id="experience" class="content-section">
+    <h2>Experiencia Laboral</h2>
+    <ul>
+      <li>2020-Presente: Desarrollador Web Senior - Empresa XYZ</li>
+      <li>2018-2020: Desarrollador Web Junior - Empresa ABC</li>
+      <li>2016-2018: Practicante de Desarrollo - StartUp Tech</li>
+    </ul>
+  </div>
+
+  <div id="education" class="content-section">
+    <h2>Educación</h2>
+    <ul>
+      <li>2015-2019: Ingeniería en Sistemas - Universidad Nacional</li>
+      <li>2020: Máster en Desarrollo Web - Instituto Tech</li>
+      <li>Certificaciones varias en desarrollo web y programación</li>
+    </ul>
+  </div>
+
+  <div id="skills" class="content-section">
+    <h2>Habilidades</h2>
+    <ul>
+      <li>HTML5, CSS3, JavaScript</li>
+      <li>React, Vue.js, Angular</li>
+      <li>Node.js, Python, PHP</li>
+      <li>Git, Docker, AWS</li>
+    </ul>
+  </div>
+
+  <div id="contact" class="content-section">
+    <h2>Contacto</h2>
+    <p>Email: ejemplo@email.com</p>
+    <p>Teléfono: +54 123 456 789</p>
+    <p>LinkedIn: /in/ejemplo</p>
+    <p>GitHub: /ejemplo</p>
+  </div>
+
+  <div id="references" class="content-section">
+    <h2>Referencias</h2>
+    <ul>
+      <li>Juan Pérez - Director de Tecnología en XYZ</li>
+      <li>María García - Gerente de Proyectos en ABC</li>
+      <li>Carlos López - Lead Developer en StartUp Tech</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .nav-bar { 
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+  }
+  
+  .nav-bar.collapsed {
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+  
+  .toggle-btn {
+    position: fixed;
+    left: 85px;
+    top: 20px;
+    background: #1a1a2e;
+    border: 2px solid #2980b9;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .toggle-btn:hover {
+    background: linear-gradient(45deg, #16a085, #2980b9);
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  
+  .toggle-btn.collapsed {
+    left: 20px;
+    transform: rotate(180deg);
+  }
+  
+  .toggle-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .toggle-btn {
+      display: none;
+    }
+    
+    .content-wrapper {
+      margin-left: 0;
+      padding: 20px;
+    }
+    
+    .content-section {
+      padding: 20px;
+    }
+
+    .nav-bar.collapsed {
+      transform: translateY(-100%);
+    }
+  }
+</style>
+
+<button class="toggle-btn" onclick="toggleNav()" aria-label="Toggle navigation">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 18l-6-6 6-6"/>
+  </svg>
+</button>
+
+<script>
+  function toggleNav() {
+    const navBar = document.querySelector('.nav-bar');
+    const toggleBtn = document.querySelector('.toggle-btn');
+    navBar.classList.toggle('collapsed');
+    toggleBtn.classList.toggle('collapsed');
+    
+    const isCollapsed = navBar.classList.contains('collapsed');
+    localStorage.setItem('navCollapsed', isCollapsed);
+  }
+  
+  function showSection(sectionId) {
+    // Ocultar todas las secciones
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.remove('active');
+    });
+    
+    // Mostrar la sección seleccionada
+    document.getElementById(sectionId).classList.add('active');
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const isCollapsed = localStorage.getItem('navCollapsed') === 'true';
+    if (isCollapsed) {
+      const navBar = document.querySelector('.nav-bar');
+      const toggleBtn = document.querySelector('.toggle-btn');
+      navBar.classList.add('collapsed');
+      toggleBtn.classList.add('collapsed');
+    }
+    
+    // Mostrar la sección de bienvenida por defecto
+    showSection('welcome');
+  });
+</script>
+</body>
+</html>
